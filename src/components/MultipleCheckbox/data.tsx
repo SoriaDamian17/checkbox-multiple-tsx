@@ -13,7 +13,10 @@ export const buildingAreasOptions: IdValue[] = [
   },
   {
     id: "2",
-    value: "Façade and immediate surroundings"
+    value: "Façade and immediate surroundings",
+    placeholder: "",
+    input: "",
+    disabled: true
   },
   {
     id: "3",

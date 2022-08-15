@@ -8,7 +8,16 @@ export default function App() {
   const [options, setOptions] = useState<IdValue[]>(buildingAreasOptions);
   const [values, setValues] = useState<IdValue[]>([]);
 
-  function handleChecked(item: any) {
+  function handleInput(item: IdValue) {
+    const updateInput = values.map((option: IdValue) => {
+      if (option.id === item.id) option.input = item.input;
+
+      return option;
+    });
+    setValues(updateInput);
+  }
+
+  function handleChecked(item: IdValue) {
     console.log(item);
     if (isExist(values, item.id).length) {
       const disabledInput: IdValue[] = options.map((option: IdValue) => {
@@ -37,9 +46,10 @@ export default function App() {
       <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2>
       <MultipleCheckbox
-        options={buildingAreasOptions}
-        values={options}
+        options={options}
+        values={values}
         handleChecked={handleChecked}
+        handleInput={handleInput}
         />
     </div>
   );

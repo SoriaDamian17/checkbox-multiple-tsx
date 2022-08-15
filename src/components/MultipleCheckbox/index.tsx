@@ -11,14 +11,6 @@ export interface MultipleSelectProps {
   values: IdValue[];
   handleChecked: (value: IdValue) => void
   handleInput: (value: IdValue) => void;
-  // onChange?: (value: IdValue, type: string) => void
-  // onChangeOther?: (value: string) => void
-  // direction?: 'row' | 'column'
-  // other?: string,
-  // placeholder?:string
-  // isCeiling?: boolean
-  // disabled?: boolean
-  // setDisabled?:(value:boolean) => void
 }
 
 const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
@@ -61,7 +53,7 @@ const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
             <CheckboxInput
               key={option.id}
               type="text"
-              value={values[index].input}
+              value={values[index]?.input}
               onInput={(evt: React.ChangeEvent<HTMLInputElement>) =>
                 onChangeInput(option, evt)
               }

@@ -47,7 +47,7 @@ const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
 
   return (
     <CheckboxContainer direction="column">
-      {options.map((option: IdValue) => (
+      {options.map((option: IdValue, index) => (
           <CheckboxItem key={option.id} >
             <Checkbox
               key={option.value}
@@ -61,7 +61,7 @@ const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
             <CheckboxInput
               key={option.id}
               type="text"
-              value={option.input}
+              value={values[index].input}
               onInput={(evt: React.ChangeEvent<HTMLInputElement>) =>
                 onChangeInput(option, evt)
               }

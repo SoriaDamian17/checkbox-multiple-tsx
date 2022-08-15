@@ -10,6 +10,7 @@ export interface MultipleSelectProps {
   options: IdValue[];
   values: IdValue[];
   handleChecked: (value: IdValue) => void
+  handleInput: (value: IdValue) => void;
   // onChange?: (value: IdValue, type: string) => void
   // onChangeOther?: (value: string) => void
   // direction?: 'row' | 'column'
@@ -24,7 +25,16 @@ const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
   options,
   values,
   handleChecked,
+  handleInput,
 }: MultipleSelectProps) => {
+
+  function onChangeInput(
+    item: IdValue,
+    evt: React.ChangeEvent<HTMLInputElement>
+  ) {
+    item.input = evt.target.value;
+    handleInput && handleInput(item);
+  }
 
   function handleClick(item: any) {
     handleChecked && handleChecked(item);
@@ -52,6 +62,9 @@ const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
               key={option.id}
               type="text"
               value={option.input}
+              onInput={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                onChangeInput(option, evt)
+              }
               placeholder={option.placeholder}
               disabled={option.disabled}
             />

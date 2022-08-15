@@ -73,10 +73,7 @@ export const Checkbox = styled.div<{
 
     left: 20px;
 
-    background-image: url(/images/checkbox-check.png);
-    background-size: 20px 18px;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: ${({ theme }) => `${theme.palette.primary}`};
   }
 `;
 

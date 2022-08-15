@@ -1,7 +1,7 @@
 export interface IdValue {
   id: string;
   value: string;
-  placeholder: string;
+  placeholder?: string;
   input?: string;
   disabled?: boolean;
 }

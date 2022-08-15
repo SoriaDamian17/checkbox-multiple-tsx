@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CheckboxContainer = styled.div<{
-  direction: string;
+  direction: string,
 }>`
   display: flex;
   flex-direction: ${(props) => props.direction};
@@ -26,8 +26,8 @@ export const CheckboxItem = styled.div`
 `;
 
 export const Checkbox = styled.div<{
-  key: any;
-  pointEvent: boolean;
+  key: any,
+  pointEvent: boolean,
 }>`
   height: 40px;
   font-family: "Montserrat";

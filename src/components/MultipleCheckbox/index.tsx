@@ -9,6 +9,7 @@ import { IdValue } from "./data";
 export interface MultipleSelectProps {
   options: IdValue[];
   values: IdValue[];
+  handleChecked: (value: IdValue) => void
   // onChange?: (value: IdValue, type: string) => void
   // onChangeOther?: (value: string) => void
   // direction?: 'row' | 'column'
@@ -21,17 +22,12 @@ export interface MultipleSelectProps {
 
 const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
   options,
-  values
+  values,
+  handleChecked,
 }: MultipleSelectProps) => {
+
   function handleClick(item: any) {
-    onChange && onChange(item, "item");
-    if (item.value === "Other") {
-      setDisabled(!disabled);
-      if (!disabled) {
-        setValue("");
-        onChangeOther && onChangeOther("");
-      }
-    }
+    handleChecked && handleChecked(item);
   }
 
   function handleSelected(values: any, item: any) {
@@ -42,16 +38,15 @@ const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
   return (
     <CheckboxContainer direction="column">
       {options.map((option: IdValue) => (
-        <>
-          <CheckboxItem key={option.id}>
+          <CheckboxItem key={option.id} >
             <Checkbox
               key={option.value}
               className={handleSelected(values, option)}
               pointEvent={option.value === "Other"}
+              onClick={() => handleClick(option)}
             >
               {option.value}
             </Checkbox>
-          </CheckboxItem>
           {option.hasOwnProperty("input") && (
             <CheckboxInput
               key={option.id}
@@ -61,7 +56,7 @@ const MultipleCheckbox: React.FC<MultipleSelectProps> = ({
               disabled={option.disabled}
             />
           )}
-        </>
+        </CheckboxItem>
       ))}
     </CheckboxContainer>
   );

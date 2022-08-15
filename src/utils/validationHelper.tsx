@@ -1,0 +1,1 @@
+export const isExist = (values: any, id: string) => values.filter((opt: any) => opt.id === id)

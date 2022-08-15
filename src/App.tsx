@@ -18,27 +18,16 @@ export default function App() {
   }
 
   function handleChecked(item: IdValue) {
-    console.log(item);
-    if (isExist(values, item.id).length) {
-      const disabledInput: IdValue[] = options.map((option: IdValue) => {
-        if (option.id === item.id) {
-          option.disabled = true;
-        }
-        return option;
-      });
-      setOptions(disabledInput);
-      const removeOption = values.filter((opt) => opt.id !== item.id);
-      setValues(removeOption);
-      return;
-    }
     const enableInput: IdValue[] = options.map((option: IdValue) => {
       if (option.id === item.id) {
-        option.disabled = false;
+        option.disabled = !option.disabled;
       }
       return option;
     });
     setOptions(enableInput);
-    return setValues([...values, item]);
+    return setValues(isExist(values, item.id).length ? 
+    values.filter((opt) => opt.id !== item.id) :
+    [...values, item]);
   }
 
   return (
